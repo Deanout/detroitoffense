@@ -26,6 +26,8 @@ html::before {
   background-size: cover;
   filter: brightness(1.2);
   opacity: 0.5; /* Slight transparency */
+  pointer-events: none;
+
 }
 
 /* Hide Skip Link until Focus */
