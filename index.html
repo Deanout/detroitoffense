@@ -2,54 +2,53 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Detroit Offense</title>
     <style>
-      /* Center the main block in the viewport */
+      /* ------------ GLOBAL LAYOUT ------------------------------------- */
       html,body{
         height:100%;margin:0;
         display:flex;flex-direction:column;
-        justify-content:center;align-items:center;
-        color:#000;
-        font:clamp(2rem,6vw,4rem)/1.2 system-ui,Arial,sans-serif;
+        align-items:center;                 /* horizontal centering       */
+        font-family:system-ui,Arial,sans-serif;
         text-align:center;
+        color:#000;
       }
 
-      /* Main clickable area */
+      /* ------------ CLICKABLE HEADLINE WRAPPER ------------------------ */
       .wrapper{
-        margin-top: auto;
-        display:flex;
-        flex-direction:column;
+        flex:1;                            /* fills available space       */
+        display:flex;flex-direction:column;
+        justify-content:center;            /* vertical centering          */
         align-items:center;
         cursor:pointer;
-        user-select:none;
-        -webkit-user-select:none;
-        -ms-user-select:none;
+        user-select:none;-webkit-user-select:none;-ms-user-select:none;
       }
 
-      h1,h2{margin:0}
+      /* Main lines—use clamp so they scale nicely from phones to 4K      */
+      h2{
+        margin:0;
+        font-size:clamp(1.4rem,4vw,3rem);  /* 1.4–3 rem, grows with width */
+        line-height:1.15;
+      }
 
-      /* Detroit Defense credit */
+      /* ------------ CREDIT LINK -------------------------------------- */
       .credit{
-        font-size:0.5em;
+        font-size:clamp(0.6rem,1.5vw,1rem);
         margin-top:0.5rem;
       }
       .credit a{
-        color:inherit;
-        text-decoration:none;
-        border-bottom:1px solid currentColor;
+        color:inherit;text-decoration:none;border-bottom:1px solid currentColor;
       }
       .credit a:hover{ text-decoration:underline; }
 
-      /* Footer */
+      /* ------------ FOOTER ------------------------------------------- */
       footer{
-        margin-top:auto;
-        font-size:0.4em;
+        font-size:clamp(0.55rem,1.3vw,0.9rem);
         padding:0.5rem 0;
       }
       footer a{
-        color:inherit;
-        text-decoration:none;
-        border-bottom:1px solid currentColor;
+        color:inherit;text-decoration:none;border-bottom:1px solid currentColor;
       }
       footer a:hover{ text-decoration:underline; }
     </style>
@@ -57,10 +56,11 @@
 
   <body>
     <div class="wrapper" onclick="toggleLines()">
-      <h1 id="line1">The Best Defense</h1>
+      <h2 id="line1">The Best Defense</h2>
       <h2 id="line2">Is a Good Offense</h2>
+
       <p class="credit">
-        Visit Detroit Defense at
+        Visit Detroit&nbsp;Defense at&nbsp;
         <a href="https://detroitdefense.com" target="_blank" rel="noopener">
           detroitdefense.com
         </a>
@@ -73,36 +73,37 @@
 
     <script>
       let showingDefenseFirst = true;
-      let inEasterEgg       = false;  // track if "Deanfense" mode is active
+      let inEasterEgg         = false;   // tracks "Deanfense" mode
 
       function setLines(top, bottom){
         line1.textContent = top;
         line2.textContent = bottom;
       }
 
-      function toggleLines(){
-        if(inEasterEgg){              // clicking exits the Easter egg
+      function toggleLines(){            // click toggles normal phrases
+        if(inEasterEgg){
           inEasterEgg = false;
-          showingDefenseFirst = true; // reset normal cycle
+          showingDefenseFirst = true;
+          setLines('The Best Defense', 'Is a Good Offense');
         } else {
           if(showingDefenseFirst){
             setLines('The Best Offense', 'Is a Good Defense');
-          } else{
+          } else {
             setLines('The Best Defense', 'Is a Good Offense');
           }
           showingDefenseFirst = !showingDefenseFirst;
         }
       }
 
-      // Easter‑egg listener: D or d toggles "Deanfense" text
+      // Easter‑egg: press “D” to get “Deanfense”
       document.addEventListener('keydown', e => {
         if(e.key.toLowerCase() === 'd'){
           if(!inEasterEgg){
-            setLines('The Best Deanfense', 'Is a Good Offense');
             inEasterEgg = true;
+            setLines('The Best Deanfense', 'Is a Good Offense');
           } else {
             inEasterEgg = false;
-            showingDefenseFirst = true;          // reset to normal order
+            showingDefenseFirst = true;
             setLines('The Best Defense', 'Is a Good Offense');
           }
         }
