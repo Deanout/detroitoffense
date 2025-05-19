@@ -4,22 +4,53 @@
     <meta charset="utf-8" />
     <title>Detroit Offense</title>
     <style>
+      /* Center the main block in the viewport */
       html,body{
         height:100%;margin:0;
-        display:flex;justify-content:center;align-items:center;
+        display:flex;flex-direction:column;
+        justify-content:center;align-items:center;
         color:#000;
         font:clamp(2rem,6vw,4rem)/1.2 system-ui,Arial,sans-serif;
         text-align:center;
       }
 
+      /* Main clickable area */
       .wrapper{
         display:flex;
         flex-direction:column;
         align-items:center;
         cursor:pointer;
+        user-select:none;
+        -webkit-user-select:none;
+        -ms-user-select:none;
       }
 
       h1,h2{margin:0}
+
+      /* Detroit Defense credit */
+      .credit{
+        font-size:0.5em;
+        margin-top:0.5rem;
+      }
+      .credit a{
+        color:inherit;
+        text-decoration:none;
+        border-bottom:1px solid currentColor;
+      }
+      .credit a:hover{ text-decoration:underline; }
+
+      /* Footer */
+      footer{
+        margin-top:auto;
+        font-size:0.4em;
+        padding:0.5rem 0;
+      }
+      footer a{
+        color:inherit;
+        text-decoration:none;
+        border-bottom:1px solid currentColor;
+      }
+      footer a:hover{ text-decoration:underline; }
     </style>
   </head>
 
@@ -27,21 +58,54 @@
     <div class="wrapper" onclick="toggleLines()">
       <h1 id="line1">The Best Defense</h1>
       <h2 id="line2">Is a Good Offense</h2>
+      <p class="credit">
+        Visit Detroit Defense at
+        <a href="https://detroitdefense.com" target="_blank" rel="noopener">
+          detroitdefense.com
+        </a>
+      </p>
     </div>
+
+    <footer>
+      Made by&nbsp;<a href="https://deanin.com" target="_blank" rel="noopener">Deanin</a>
+    </footer>
 
     <script>
       let showingDefenseFirst = true;
+      let inEasterEgg       = false;  // track if "Deanfense" mode is active
+
+      function setLines(top, bottom){
+        line1.textContent = top;
+        line2.textContent = bottom;
+      }
 
       function toggleLines(){
-        if(showingDefenseFirst){
-          line1.textContent = 'The Best Offense';
-          line2.textContent = 'Is a Good Defense';
-        }else{
-          line1.textContent = 'The Best Defense';
-          line2.textContent = 'Is a Good Offense';
+        if(inEasterEgg){              // clicking exits the Easter egg
+          inEasterEgg = false;
+          showingDefenseFirst = true; // reset normal cycle
+        } else {
+          if(showingDefenseFirst){
+            setLines('The Best Offense', 'Is a Good Defense');
+          } else{
+            setLines('The Best Defense', 'Is a Good Offense');
+          }
+          showingDefenseFirst = !showingDefenseFirst;
         }
-        showingDefenseFirst = !showingDefenseFirst;
       }
+
+      // Easter‑egg listener: D or d toggles "Deanfense" text
+      document.addEventListener('keydown', e => {
+        if(e.key.toLowerCase() === 'd'){
+          if(!inEasterEgg){
+            setLines('The Best Deanfense', 'Is a Good Offense');
+            inEasterEgg = true;
+          } else {
+            inEasterEgg = false;
+            showingDefenseFirst = true;          // reset to normal order
+            setLines('The Best Defense', 'Is a Good Offense');
+          }
+        }
+      });
     </script>
   </body>
 </html>
