@@ -4,53 +4,86 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Detroit Offense</title>
+
     <style>
-      /* ------------ GLOBAL LAYOUT ------------------------------------- */
+      /* ---------- DETROIT DEFENSE PALETTE ---------------------------- */
+      :root{
+        --navy:   #1B2226;   /* sampled from your screenshot */
+        --orange: #FE4E00;   /* sampled contact‑button orange */
+        --white:  #FFFFFF;
+      }
+
+      /* ---------- GLOBAL LAYOUT ------------------------------------- */
       html,body{
         height:100%;margin:0;
         display:flex;flex-direction:column;
-        align-items:center;                 /* horizontal centering       */
+        align-items:center;
+        background:var(--navy);
+        color:var(--white);
         font-family:system-ui,Arial,sans-serif;
         text-align:center;
-        color:#000;
       }
 
-      /* ------------ CLICKABLE HEADLINE WRAPPER ------------------------ */
+      /* ---------- CLICKABLE HEADLINE WRAPPER ------------------------ */
       .wrapper{
-        flex:1;                            /* fills available space       */
+        flex:1;
         display:flex;flex-direction:column;
-        justify-content:center;            /* vertical centering          */
-        align-items:center;
+        justify-content:center;align-items:center;
         cursor:pointer;
         user-select:none;-webkit-user-select:none;-ms-user-select:none;
       }
 
-      /* Main lines—use clamp so they scale nicely from phones to 4K      */
       h2{
         margin:0;
-        font-size:clamp(1.4rem,4vw,3rem);  /* 1.4–3 rem, grows with width */
+        font-size:clamp(1.25rem,4vw,2.75rem); /* scale for laptops */
         line-height:1.15;
+        font-weight:600;
       }
 
-      /* ------------ CREDIT LINK -------------------------------------- */
+      /* ---------- CREDIT ------------------------------------------- */
       .credit{
-        font-size:clamp(0.6rem,1.5vw,1rem);
-        margin-top:0.5rem;
+        font-size:clamp(.65rem,1.4vw,.95rem);
+        margin-top:.6rem;
       }
       .credit a{
-        color:inherit;text-decoration:none;border-bottom:1px solid currentColor;
+        color:var(--orange);
+        text-decoration:none;
+        border-bottom:1px solid var(--orange);
       }
       .credit a:hover{ text-decoration:underline; }
 
-      /* ------------ FOOTER ------------------------------------------- */
+      /* ---------- FOOTER ------------------------------------------- */
       footer{
-        font-size:clamp(0.55rem,1.3vw,0.9rem);
-        padding:0.5rem 0;
+        font-size:clamp(.6rem,1.3vw,.9rem);
+        padding:.5rem 0;
       }
       footer a{
-        color:inherit;text-decoration:none;border-bottom:1px solid currentColor;
+        color:var(--orange);
+        text-decoration:none;
+        border-bottom:1px solid var(--orange);
       }
       footer a:hover{ text-decoration:underline; }
+
+      /* ---------- OPTIONAL OCTAGON BUTTON --------------------------- */
+      .btn--octagon{
+        display:inline-block;
+        padding:.7rem 2.2rem;
+        background:var(--orange);
+        color:var(--white);
+        font-size:clamp(.8rem,1.8vw,1rem);
+        font-weight:600;
+        border:none;
+        cursor:pointer;
+        /* 8‑sided shape */
+        clip-path:polygon(
+          8px 0, calc(100% - 8px) 0,
+          100% 8px, 100% calc(100% - 8px),
+          calc(100% - 8px) 100%, 8px 100%,
+          0 calc(100% - 8px), 0 8px
+        );
+        transition:filter .15s ease;
+      }
+      .btn--octagon:hover{ filter:brightness(110%); }
     </style>
   </head>
 
@@ -67,44 +100,43 @@
       </p>
     </div>
 
+    <!-- Example of the octagon button, remove if not needed -->
+    <!-- <button class="btn--octagon">Contact&nbsp;Us</button> -->
+
     <footer>
       Made by&nbsp;<a href="https://deanin.com" target="_blank" rel="noopener">Deanin</a>
     </footer>
 
     <script>
-      let showingDefenseFirst = true;
-      let inEasterEgg         = false;   // tracks "Deanfense" mode
+      let showingDefenseFirst = true, inEgg = false;
 
-      function setLines(top, bottom){
+      const setLines = (top,bottom)=>{
         line1.textContent = top;
         line2.textContent = bottom;
-      }
+      };
 
-      function toggleLines(){            // click toggles normal phrases
-        if(inEasterEgg){
-          inEasterEgg = false;
+      function toggleLines(){
+        if(inEgg){
+          inEgg = false;
           showingDefenseFirst = true;
-          setLines('The Best Defense', 'Is a Good Offense');
-        } else {
-          if(showingDefenseFirst){
-            setLines('The Best Offense', 'Is a Good Defense');
-          } else {
-            setLines('The Best Defense', 'Is a Good Offense');
-          }
-          showingDefenseFirst = !showingDefenseFirst;
+          setLines('The Best Defense','Is a Good Offense');
+          return;
         }
+        showingDefenseFirst
+          ? setLines('The Best Offense','Is a Good Defense')
+          : setLines('The Best Defense','Is a Good Offense');
+        showingDefenseFirst = !showingDefenseFirst;
       }
 
-      // Easter‑egg: press “D” to get “Deanfense”
-      document.addEventListener('keydown', e => {
-        if(e.key.toLowerCase() === 'd'){
-          if(!inEasterEgg){
-            inEasterEgg = true;
-            setLines('The Best Deanfense', 'Is a Good Offense');
-          } else {
-            inEasterEgg = false;
-            showingDefenseFirst = true;
-            setLines('The Best Defense', 'Is a Good Offense');
+      /* “D” Easter egg → Deanfense */
+      addEventListener('keydown',e=>{
+        if(e.key.toLowerCase()==='d'){
+          if(inEgg){
+            inEgg=false; showingDefenseFirst=true;
+            setLines('The Best Defense','Is a Good Offense');
+          }else{
+            inEgg=true;
+            setLines('The Best Deanfense','Is a Good Offense');
           }
         }
       });
