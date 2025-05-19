@@ -11,23 +11,37 @@
         font:clamp(2rem,6vw,4rem)/1.2 system-ui,Arial,sans-serif;
         text-align:center;
       }
-      h1{margin:0}
+
+      .wrapper{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        cursor:pointer;
+      }
+
+      h1,h2{margin:0}
     </style>
   </head>
 
   <body>
-    <h1 id="msg">The Best Defense</h1>
-    <h2 id="msg2">Is a Good Offense</h2>
+    <div class="wrapper" onclick="toggleLines()">
+      <h1 id="line1">The Best Defense</h1>
+      <h2 id="line2">Is a Good Offense</h2>
+    </div>
+
     <script>
-      const msg = document.getElementById('msg');
-      const msg2 = document.getElementById('msg2');
+      let showingDefenseFirst = true;
 
-      function changeText() {
-        msg.innerText = "The Best Offense";
-        msg2.innerText = "Is a Good Defense";
+      function toggleLines(){
+        if(showingDefenseFirst){
+          line1.textContent = 'The Best Offense';
+          line2.textContent = 'Is a Good Defense';
+        }else{
+          line1.textContent = 'The Best Defense';
+          line2.textContent = 'Is a Good Offense';
+        }
+        showingDefenseFirst = !showingDefenseFirst;
       }
-
-      setTimeout(changeText, 2000);
     </script>
   </body>
 </html>
