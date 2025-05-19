@@ -92,6 +92,7 @@ main {
   user-select: none;
   background: transparent;
   backdrop-filter: blur(2px);
+  min-height:6.5rem;
 }
 
 .bracket-wrap {
@@ -127,6 +128,7 @@ h2 {
 
 .credit a,
 footer a {
+  font-size: clamp(.8rem, 1.8vw, .95rem);
   color: var(--orange);
   text-decoration: none;
   border-bottom: 1px solid var(--orange);
