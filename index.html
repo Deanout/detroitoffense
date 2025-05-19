@@ -20,40 +20,54 @@
     <meta name="twitter:image" content="https://detroitoffense.com/logo.png" />
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYCMTJJ8NY"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-DYCMTJJ8NY');
-    </script>
-
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <div class="wrapper" onclick="toggleLines()">
-      <div class="bracket-wrap">
-        <img src="brackets.svg" class="bracket" alt="left-bracket" style="height: 5rem;">
-        <div>
-          <h2 id="line1">The Best Defense</h2>
-          <h2 id="line2">Is a Good Offense</h2>
+    <!-- Skip Navigation Link for Accessibility -->
+    <a href="#main-content" class="skip-link" tabindex="1">Skip to main content</a>
+
+    <header role="banner">
+      <nav class="nav-placeholder" aria-label="Main Navigation">
+        <div class="nav-content">
+          <!-- Future navigation links will go here -->
         </div>
-        <img src="brackets.svg" class="bracket" alt="right-bracket" style="transform: rotate(0deg); height: 5rem;">
-      </div>
+      </nav>
+    </header>
 
-      <p class="credit">
-        Visit Detroit&nbsp;Defense at&nbsp;
-        <a href="https://detroitdefense.com" target="_blank" rel="noopener">
-          detroitdefense.com
-        </a>
-      </p>
-    </div>
+    <main id="main-content" role="main">
+      <article class="wrapper" onclick="toggleLines()">
+        <section class="bracket-wrap" aria-label="Motto Display">
+          <img 
+            src="brackets.svg" 
+            class="bracket left-bracket" 
+            alt="Bracket decoration - left side"
+            loading="lazy"
+          >
+          <div>
+            <h2 id="line1"><span>The Best Defense</span><br/><span>Is a Good Offense</span></h2>
+          </div>
+          <img 
+            src="brackets.svg" 
+            class="bracket right-bracket" 
+            alt="Bracket decoration - right side"
+            loading="lazy"
+          >
+        </section>
 
-    <footer>
-      Made by&nbsp;<a href="https://deanin.com" target="_blank" rel="noopener">Deanin</a>
+        <section class="credit">
+          <p>
+            Visit Detroit&nbsp;Defense at&nbsp;
+            <a href="https://detroitdefense.com" target="_blank" rel="noopener">
+              detroitdefense.com
+            </a>
+          </p>
+        </section>
+      </article>
+    </main>
+
+    <footer role="contentinfo">
+      <p>Made by&nbsp;<a href="https://deanin.com" target="_blank" rel="noopener">Deanin</a></p>
     </footer>
 
     <script src="scripts.js"></script>
