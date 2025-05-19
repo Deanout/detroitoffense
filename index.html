@@ -26,14 +26,18 @@
       /* blanket dotted‑octagon pattern from vector.webp */
       html::before{
         content:"";
-        position:fixed; inset:0; z-index:-1; pointer-events:none;
-        background:url("vector.webp") no-repeat center center fixed; background-size: cover;   /* tweak: bigger tile = subtler */
+        position:fixed; inset:0; z-index:1; pointer-events:none;
+        background:url("vector.webp") repeat center center fixed;
+        background-size: cover;
         filter: brightness(1.2); opacity: 1;
       }
 
       /* ─── CLICKABLE HEADLINE BLOCK ─────────────────────────────── */
       .wrapper{
-        margin-top:auto; margin-bottom:auto;
+        position:relative;
+        top:50%;
+        left:50%;
+        transform:translate(-50%, -50%);
         display:flex;
         flex-direction:column;
         justify-content:center;
@@ -42,10 +46,8 @@
         user-select:none;
         -webkit-user-select:none;
         -ms-user-select:none;
-        background:url('vector.webp') no-repeat center center;
-        background-size: cover;
-        width: 100%;
-        min-height: 100vh;
+        background:transparent;
+        backdrop-filter: blur(2px);
       }
 
       /* ─── SVG BRACKETS WRAP ─────────────────────────────────────── */
@@ -83,7 +85,13 @@
 
       footer{
         font-size:clamp(.6rem,1.3vw,.9rem);
-        padding:.5rem 0;
+        margin-top: auto;
+        width: 100%;
+        text-align: center;
+        background: var(--navy);
+        padding: 0.5rem 0;
+        position: absolute;
+        bottom: 0;
       }
 
     </style>
