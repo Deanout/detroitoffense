@@ -16,6 +16,18 @@ html, body {
   text-align: center;
 }
 
+/* Background Image */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background: url("/vector.webp") repeat center center fixed;
+  background-size: cover;
+  filter: brightness(1.2);
+  opacity: 0.5; /* Slight transparency */
+}
+
 /* Hide Skip Link until Focus */
 .skip-link {
   position: absolute;
