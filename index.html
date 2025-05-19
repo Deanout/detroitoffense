@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Detroit Offense</title>
+    <style>
+      html,body{
+        height:100%;margin:0;
+        display:flex;justify-content:center;align-items:center;
+        color:#000;
+        font:clamp(2rem,6vw,4rem)/1.2 system-ui,Arial,sans-serif;
+        text-align:center;
+      }
+      h1{margin:0}
+    </style>
+  </head>
+
+  <body>
+    <h1 id="msg">The Best Defense</h1>
+    <h2 id="msg2">Is a Good Offense</h2>
+    <script>
+      const msg = document.getElementById('msg');
+      const msg2 = document.getElementById('msg2');
+
+      function changeText() {
+        msg.innerText = "The Best Offense";
+        msg2.innerText = "Is a Good Defense";
+      }
+
+      setTimeout(changeText, 2000);
+    </script>
+  </body>
+</html>
