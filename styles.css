@@ -25,7 +25,7 @@ html::before {
   background: url("/vector.webp") repeat center center fixed;
   background-size: cover;
   filter: brightness(1.2);
-  opacity: 0.5; /* Slight transparency */
+  opacity: 1; /* Slight transparency */
   pointer-events: none;
 
 }
