@@ -1,0 +1,90 @@
+:root{
+  --navy:   #1B2226;
+  --orange: #FE4E00;
+  --white:  #FFFFFF;
+  --angle: 8px; /* master cut‑angle */
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--navy);
+  color: var(--white);
+  font-family: system-ui, Arial, sans-serif;
+  text-align: center;
+}
+
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: url("vector.webp") repeat center center fixed;
+  background-size: cover;
+  filter: brightness(1.2);
+  opacity: 1;
+}
+
+.wrapper {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  backdrop-filter: blur(2px);
+}
+
+.bracket-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.bracket {
+  height: 2.5rem;
+  width: auto;
+  transform: rotate(180deg);
+}
+
+h2 {
+  margin: 0;
+  font-size: clamp(1.25rem, 4vw, 2.75rem);
+  line-height: 1.15;
+  font-weight: 600;
+}
+
+.credit {
+  font-size: clamp(.65rem, 1.4vw, .95rem);
+  margin-top: .6rem;
+}
+.credit a,
+footer a {
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid var(--orange);
+}
+.credit a:hover,
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  font-size: clamp(.6rem, 1.3vw, .9rem);
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
+  background: var(--navy);
+  padding: 0.5rem 0;
+  position: absolute;
+  bottom: 0;
+}

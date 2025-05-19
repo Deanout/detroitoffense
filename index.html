@@ -5,96 +5,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Detroit Offense</title>
 
-    <style>
-      /* ─── BRAND PALETTE ────────────────────────────────────────── */
-      :root{
-        --navy:   #1B2226;
-        --orange: #FE4E00;
-        --white:  #FFFFFF;
-        --angle: 8px;              /* master cut‑angle                */
-      }
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DYCMTJJ8NY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-      /* ─── GLOBAL LAYOUT + REAL HALFTONE BG ─────────────────────── */
-      html,body{
-        height:100%;margin:0;
-        display:flex;flex-direction:column;align-items:center;
-        background:var(--navy);
-        color:var(--white);
-        font-family:system-ui,Arial,sans-serif;
-        text-align:center;
-      }
-      /* blanket dotted‑octagon pattern from vector.webp */
-      html::before{
-        content:"";
-        position:fixed; inset:0; z-index:1; pointer-events:none;
-        background:url("vector.webp") repeat center center fixed;
-        background-size: cover;
-        filter: brightness(1.2); opacity: 1;
-      }
+      gtag('config', 'G-DYCMTJJ8NY');
+    </script>
 
-      /* ─── CLICKABLE HEADLINE BLOCK ─────────────────────────────── */
-      .wrapper{
-        position:relative;
-        top:50%;
-        left:50%;
-        transform:translate(-50%, -50%);
-        display:flex;
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        cursor:pointer;
-        user-select:none;
-        -webkit-user-select:none;
-        -ms-user-select:none;
-        background:transparent;
-        backdrop-filter: blur(2px);
-      }
-
-      /* ─── SVG BRACKETS WRAP ─────────────────────────────────────── */
-      .bracket-wrap{
-        position:relative;
-        display:flex;
-        align-items:center;
-        gap: 0.5rem;
-      }
-      .bracket{
-        height: 2.5rem;
-        width: auto;
-        transform: rotate(180deg);
-      }
-
-      h2{
-        margin:0;
-        font-size:clamp(1.25rem,4vw,2.75rem);
-        line-height:1.15;
-        font-weight:600;
-      }
-
-      /* ─── CREDIT & FOOTER LINKS ────────────────────────────────── */
-      .credit{
-        font-size:clamp(.65rem,1.4vw,.95rem);
-        margin-top:.6rem;
-      }
-      .credit a,
-      footer a{
-        color:var(--orange); text-decoration:none;
-        border-bottom:1px solid var(--orange);
-      }
-      .credit a:hover,
-      footer a:hover{ text-decoration:underline; }
-
-      footer{
-        font-size:clamp(.6rem,1.3vw,.9rem);
-        margin-top: auto;
-        width: 100%;
-        text-align: center;
-        background: var(--navy);
-        padding: 0.5rem 0;
-        position: absolute;
-        bottom: 0;
-      }
-
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
@@ -120,35 +41,6 @@
       Made by&nbsp;<a href="https://deanin.com" target="_blank" rel="noopener">Deanin</a>
     </footer>
 
-    <script>
-      let showingDefenseFirst = true, inEgg = false;
-
-      const setLines = (top,bottom)=>{ line1.textContent = top; line2.textContent = bottom; };
-
-      function toggleLines(){
-        if(inEgg){
-          inEgg = false; showingDefenseFirst = true;
-          setLines('The Best Defense','Is a Good Offense');
-          return;
-        }
-        showingDefenseFirst
-          ? setLines('The Best Offense','Is a Good Defense')
-          : setLines('The Best Defense','Is a Good Offense');
-        showingDefenseFirst = !showingDefenseFirst;
-      }
-
-      /* Easter egg: “D” key toggles “Deanfense” */
-      addEventListener('keydown',e=>{
-        if(e.key.toLowerCase()==='d'){
-          if(inEgg){
-            inEgg=false; showingDefenseFirst=true;
-            setLines('The Best Defense','Is a Good Offense');
-          }else{
-            inEgg=true;
-            setLines('The Best Deanfense','Is a Good Offense');
-          }
-        }
-      });
-    </script>
+    <script src="scripts.js"></script>
   </body>
 </html>
